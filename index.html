@@ -39,7 +39,6 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #eeeeee;
             z-index: 1100;
-            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -57,11 +56,6 @@
             align-items: center;
             gap: 14px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-container:hover {
-            transform: scale(1.03);
         }
 
         .logo-img {
@@ -90,7 +84,6 @@
             letter-spacing: 1.5px;
             color: var(--primary);
             position: relative;
-            transition: color 0.3s ease;
         }
 
         .nav-menu a::after {
@@ -185,7 +178,6 @@
             justify-content: center;
             text-align: center;
             color: white;
-            position: relative;
         }
 
         .hero-content {
@@ -198,7 +190,6 @@
             font-weight: 900;
             letter-spacing: -3px;
             margin-bottom: 20px;
-            line-height: 1.05;
         }
 
         .hero p {
@@ -218,15 +209,10 @@
             color: black;
             border: none;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.4s;
         }
 
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        /* CATEGORIES */
+        /* CATEGORIES y PRODUCTS (mismo estilo anterior) */
         .category-filters {
             display: flex;
             justify-content: center;
@@ -254,7 +240,6 @@
             color: white;
         }
 
-        /* PRODUCTS */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -298,7 +283,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.7s;
         }
 
         .product-card:hover .product-img {
@@ -321,7 +306,6 @@
             font-size: 1.35rem;
             font-weight: 700;
             margin-bottom: 12px;
-            line-height: 1.3;
         }
 
         .product-price {
@@ -341,7 +325,6 @@
             font-size: 0.9rem;
             letter-spacing: 1.5px;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .btn-add:hover {
@@ -350,7 +333,7 @@
             border: 1px solid #111;
         }
 
-        /* CART */
+        /* CART SIDEBAR */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -415,10 +398,8 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.1rem;
         }
 
-        /* FOOTER */
         footer {
             background: #111;
             color: #ddd;
@@ -432,24 +413,6 @@
             letter-spacing: -1px;
             color: white;
             margin-bottom: 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-
-        .footer-col a {
-            color: #bbb;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .footer-col a:hover {
-            color: white;
         }
     </style>
 </head>
@@ -477,7 +440,7 @@
                     <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos..." onkeyup="handleSearch(event)">
                 </div>
                 
-                <button class="cart-icon-container" onclick="toggleCart()" aria-label="Ver carrito">
+                <button class="cart-icon-container" onclick="toggleCart()">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
@@ -537,7 +500,6 @@
     </footer>
 
     <script>
-        // ==================== PRODUCTOS ====================
         let products = [
             { id: 1, category: "tecnologia", title: "Tablet E-Ink Black Edition", price: 950000, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80" },
             { id: 2, category: "audio", title: "Auriculares Studio Wireless", price: 620000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" },
@@ -548,22 +510,18 @@
         ];
 
         let cart = [];
-
         const WHATSAPP_NUMBER = "573018824828";
 
-        // ==================== PERSISTENCIA ====================
+        // Persistencia
         function saveCart() {
             localStorage.setItem('digi_cart', JSON.stringify(cart));
         }
 
         function loadCart() {
-            const savedCart = localStorage.getItem('digi_cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-            }
+            const saved = localStorage.getItem('digi_cart');
+            if (saved) cart = JSON.parse(saved);
         }
 
-        // ==================== RENDER ====================
         function renderProducts(filteredProducts) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -572,7 +530,6 @@
                 const card = document.createElement('article');
                 card.className = 'product-card';
                 card.setAttribute('data-category', product.category);
-                
                 card.innerHTML = `
                     <div class="product-image-wrapper">
                         <img src="${product.img}" alt="${product.title}" class="product-img" loading="lazy">
@@ -591,12 +548,10 @@
         window.filterProducts = function(category, button) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-
-            let filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
             renderProducts(filtered);
         };
 
-        // ==================== CARRITO ====================
         window.addToCart = function(id) {
             const product = products.find(p => p.id === id);
             if (!product) return;
@@ -610,14 +565,12 @@
 
             saveCart();
             updateCartUI();
-            toggleCart(); // abre el carrito
+            toggleCart();
         };
 
         window.changeQuantity = function(index, change) {
-            const item = cart[index];
-            if (!item) return;
-            item.quantity += change;
-            if (item.quantity < 1) item.quantity = 1;
+            cart[index].quantity += change;
+            if (cart[index].quantity < 1) cart[index].quantity = 1;
             saveCart();
             updateCartUI();
         };
@@ -675,6 +628,7 @@
             overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
         };
 
+        // === FUNCIÓN PRINCIPAL - Vacía el carrito después de enviar ===
         window.sendOrderToWhatsApp = function() {
             if (cart.length === 0) {
                 alert("El carrito está vacío");
@@ -695,15 +649,19 @@
             const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
 
-            // Opcional: vaciar carrito después de enviar
-            // cart = []; saveCart(); updateCartUI(); toggleCart();
+            // VACÍA EL CARRITO después de enviar
+            setTimeout(() => {
+                cart = [];
+                saveCart();
+                updateCartUI();
+                toggleCart(); // cierra el carrito
+            }, 800); // pequeño delay para que dé tiempo a abrir WhatsApp
         };
 
         window.handleSearch = function(e) {
             if (e.key === 'Enter') {
                 const term = document.getElementById('searchInput').value.toLowerCase().trim();
                 if (!term) return renderProducts(products);
-                
                 const filtered = products.filter(p => 
                     p.title.toLowerCase().includes(term) || p.category.toLowerCase().includes(term)
                 );
@@ -711,13 +669,11 @@
             }
         };
 
-        // ==================== INIT ====================
         function init() {
             loadCart();
             renderProducts(products);
             updateCartUI();
 
-            // Cerrar carrito con ESC
             document.addEventListener('keydown', (e) => {
                 if (e.key === "Escape") {
                     const sidebar = document.getElementById('cartSidebar');

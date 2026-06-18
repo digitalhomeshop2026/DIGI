@@ -18,7 +18,7 @@
             background-color: #ffffff;
             color: #000000;
             line-height: 1.6;
-            padding-top: 80px; /* Espacio para el navbar fijo */
+            padding-top: 100px; /* Incrementado para dar espacio al nuevo tamaño del header */
         }
 
         a {
@@ -44,28 +44,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 20px 20px; /* Más padding para desahogar el logo */
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             cursor: pointer;
         }
 
-        /* ESPACIO PARA TU LOGO */
+        /* LOGO MODIFICADO: MÁS GRANDE Y SIN BORDES */
         .logo-img {
-            width: 45px; 
-            height: 45px;
+            width: 75px;      /* Aumentado de 45px a 75px para que se vea mucho más */
+            height: auto;     /* Altura automática para no deformar tu diseño original */
+            max-height: 75px; 
             object-fit: contain;
             filter: grayscale(100%);
-            border: 1px solid #000000;
-            padding: 2px;
+            border: none;     /* SE ELIMINÓ EL CUADRO NEGRO DE BORDE */
+            padding: 0;       /* Eliminado el padding viejo */
         }
 
         .brand-name {
-            font-size: 1.6rem;
+            font-size: 1.8rem; /* Ligeramente más grande para equilibrar el logo */
             font-weight: 900;
             letter-spacing: 2px;
         }
@@ -215,7 +216,6 @@
             border-bottom: 1px solid #e5e5e5;
         }
 
-        /* ESPACIO PARA IMÁGENES DE PRODUCTO */
         .product-img {
             width: 100%;
             height: 100%;
@@ -276,11 +276,11 @@
             color: #000000;
         }
 
-        /* --- PANEL LATERAL DEL CARRITO (CARRITO DESPLEGABLE) --- */
+        /* --- PANEL LATERAL DEL CARRITO --- */
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -450px; /* Oculto por defecto */
+            right: -450px;
             width: 100%;
             max-width: 450px;
             height: 100%;
@@ -325,7 +325,6 @@
             overflow-y: auto;
         }
 
-        /* ITEM INDIVIDUAL EN EL CARRITO */
         .cart-item {
             display: flex;
             gap: 15px;
@@ -381,7 +380,6 @@
             margin-top: 40px;
         }
 
-        /* TOTAL Y BOTÓN DE WHATSAPP */
         .cart-footer {
             padding: 24px;
             border-top: 1px solid #000000;
@@ -421,7 +419,6 @@
             color: #000000;
         }
 
-        /* CAPA DE FONDO OSCURO CUANDO EL CARRITO ESTÁ ABIERTO */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -476,13 +473,12 @@
             opacity: 0.4;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 15px;
             }
             .nav-menu {
-                display: none; /* En producción añadirías un menú hamburguesa */
+                display: none;
             }
             .hero h1 {
                 font-size: 2.3rem;
@@ -495,15 +491,15 @@
 </head>
 <body>
 
-    <!-- CAPA OSCURA FONDO -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 
     <!-- ENCABEZADO -->
     <header>
         <div class="nav-container">
             <div class="logo-container" onclick="window.scrollTo(0,0)">
-                <!-- ESPACIO PARA EL LOGO -->
-                <img src="1.png" alt="DIGI Logo" class="logo-img">
+                <!-- NUEVO LOGO: ANCHO DE 75PX, SIN BORDES Y SIN RELLENOS EXTERNOS -->
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=150&auto=format&fit=crop&q=60" alt="DIGI Logo" class="logo-img">
+                <span class="brand-name">DIGI</span>
             </div>
             
             <nav>
@@ -513,7 +509,6 @@
                 </ul>
             </nav>
 
-            <!-- BOTÓN CARRITO COMPRAS -->
             <button class="cart-icon-container" onclick="toggleCart()">
                 <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
@@ -525,7 +520,7 @@
         </div>
     </header>
 
-    <!-- HERO HERO BANNER -->
+    <!-- HERO BANNER -->
     <section class="hero">
         <h1>DIGITALHOME</h1>
         <p>Ecosistemas inteligentes, audio de alta fidelidad y herramientas tecnológicas diseñadas bajo una curaduría estrictamente minimalista y funcional.</p>
@@ -535,7 +530,6 @@
     <main class="container">
         <h2 class="section-title">Colección Disponible</h2>
 
-        <!-- BARRA DE FILTROS (FUNCIÓN ADICIONAL) -->
         <div class="category-filters">
             <button class="filter-btn active" onclick="filterProducts('all', this)">Todo</button>
             <button class="filter-btn" onclick="filterProducts('tecnologia', this)">Tecnología</button>
@@ -543,7 +537,6 @@
             <button class="filter-btn" onclick="filterProducts('hogar', this)">Hogar</button>
         </div>
         
-        <!-- GRILLA EXTENSA DE PRODUCTOS -->
         <div class="products-grid" id="productsGrid">
             
             <!-- PRODUCTO 1 -->
@@ -627,26 +620,22 @@
         </div>
     </main>
 
-    <!-- PANEL LATERAL DEL CARRITO COMPRAS -->
+    <!-- PANEL LATERAL DEL CARRITO -->
     <aside class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Tu Carrito</h2>
             <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
 
-        <!-- LISTADO INTERACTIVO -->
         <div class="cart-items-container" id="cartItems">
-            <!-- Los productos agregados se inyectarán aquí mediante JS -->
             <p class="cart-empty-msg">Tu carrito está vacío.</p>
         </div>
 
-        <!-- SECCIÓN DE TOTAL Y ACCIÓN -->
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total:</span>
                 <span id="cartTotal">$ 0</span>
             </div>
-            <!-- FUNCIÓN PRINCIPAL DE ENVIAR PEDIDO A WHATSAPP -->
             <button class="btn-checkout" onclick="sendOrderToWhatsApp()">
                 Pedir por WhatsApp
             </button>
@@ -664,13 +653,10 @@
         <p class="footer-text">&copy; 2026 DigitalHome. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- --- LÓGICA Y FUNCIONALIDADES EN JAVASCRIPT --- -->
     <script>
-        // Array global para almacenar los productos en el carrito
         let cart = [];
-        const WHATSAPP_NUMBER = "573018824828"; // Formato internacional completo para Colombia (57)
+        const WHATSAPP_NUMBER = "573018824828";
 
-        // Función para abrir y cerrar el panel lateral del carrito
         function toggleCart() {
             const sidebar = document.getElementById('cartSidebar');
             const overlay = document.getElementById('cartOverlay');
@@ -678,9 +664,7 @@
             overlay.classList.toggle('open');
         }
 
-        // Función para agregar un artículo al carrito
         function addToCart(id, title, price, imgUrl) {
-            // Verificar si ya existe en el carrito para sumar la cantidad
             const existingItem = cart.find(item => item.id === id);
 
             if (existingItem) {
@@ -696,29 +680,23 @@
             }
 
             updateCartUI();
-            
-            // Efecto visual: Abre automáticamente el carrito para ver el progreso de la compra
             toggleCart();
         }
 
-        // Función para remover un artículo del carrito
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             updateCartUI();
         }
 
-        // Función para formatear los números a formato moneda local ($ X.XXX.XXX)
         function formatCurrency(value) {
             return '$ ' + value.toLocaleString('es-CO');
         }
 
-        // Función que actualiza la interfaz, contador y suma de totales
         function updateCartUI() {
             const cartItemsContainer = document.getElementById('cartItems');
             const cartCountLabel = document.getElementById('cartCount');
             const cartTotalLabel = document.getElementById('cartTotal');
             
-            // Limpiar contenedor
             cartItemsContainer.innerHTML = '';
             
             let totalItemsCount = 0;
@@ -731,7 +709,6 @@
                     totalItemsCount += item.quantity;
                     totalPriceSum += (item.price * item.quantity);
 
-                    // Crear el componente HTML para cada ítem en el carrito
                     const itemHTML = `
                         <div class="cart-item">
                             <img src="${item.img}" alt="${item.title}" class="cart-item-img">
@@ -747,25 +724,21 @@
                 });
             }
 
-            // Actualizar textos en pantalla
             cartCountLabel.innerText = totalItemsCount;
             cartTotalLabel.innerText = formatCurrency(totalPriceSum);
         }
 
-        // Función Avanzada: Genera el texto estructurado del pedido y abre WhatsApp
         function sendOrderToWhatsApp() {
             if (cart.length === 0) {
                 alert("Tu carrito está vacío. Agrega algunos productos antes de enviar el pedido.");
                 return;
             }
 
-            // Crear encabezado de mensaje elegante
             let textMessage = `*NUEVO PEDIDO - DIGITALHOME (DIGI)*\n`;
             textMessage += `=============================\n\n`;
             
             let totalPedido = 0;
 
-            // Recorrer los productos del carrito
             cart.forEach((item, index) => {
                 const subtotal = item.price * item.quantity;
                 totalPedido += subtotal;
@@ -779,24 +752,16 @@
             textMessage += `*VALOR TOTAL A PAGAR:* ${formatCurrency(totalPedido)}\n\n`;
             textMessage += `_Por favor, confírmame disponibilidad para coordinar el envío._`;
 
-            // Codificar el texto para formato URL seguro
             const urlEncodedMessage = encodeURIComponent(textMessage);
-            
-            // Construir enlace de la API de WhatsApp
             const whatsAppUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${urlEncodedMessage}`;
-            
-            // Redirigir al cliente
             window.open(whatsAppUrl, '_blank');
         }
 
-        // Función del filtro por categorías
         function filterProducts(category, button) {
-            // Cambiar estado activo de los botones
             const filterButtons = document.querySelectorAll('.filter-btn');
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Filtrar las tarjetas de productos
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {

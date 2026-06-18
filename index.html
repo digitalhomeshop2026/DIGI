@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DigitalHome (DIGI) - Ecosistemas inteligentes, audio premium y diseño minimalista. Tienda de tecnología curada.">
+    <meta name="description" content="DigitalHome (DIGI) - Ecosistemas inteligentes, audio premium y diseño minimalista.">
     <title>DigitalHome (DIGI) | Tecnología Minimalista Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -69,14 +69,12 @@
             height: 68px;
             object-fit: contain;
             filter: brightness(0);
-            transition: filter 0.3s ease;
         }
 
         .brand-name {
             font-size: 1.85rem;
             font-weight: 900;
             letter-spacing: -1px;
-            color: var(--primary);
         }
 
         .nav-menu {
@@ -159,11 +157,6 @@
             background: #f5f5f5;
         }
 
-        .cart-icon-svg {
-            width: 26px;
-            height: 26px;
-        }
-
         .cart-count {
             position: absolute;
             top: -2px;
@@ -179,13 +172,6 @@
             align-items: center;
             justify-content: center;
             padding: 0 5px;
-        }
-
-        /* MOBILE MENU */
-        .hamburger {
-            display: none;
-            font-size: 1.6rem;
-            cursor: pointer;
         }
 
         /* HERO */
@@ -205,7 +191,6 @@
         .hero-content {
             max-width: 820px;
             padding: 0 20px;
-            z-index: 2;
         }
 
         .hero h1 {
@@ -232,7 +217,6 @@
             background: white;
             color: black;
             border: none;
-            border-radius: 0;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
@@ -262,7 +246,6 @@
             letter-spacing: 1.5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 0;
         }
 
         .filter-btn.active,
@@ -298,7 +281,6 @@
             border: 1px solid #eee;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
         }
 
         .product-card:hover {
@@ -310,7 +292,6 @@
         .product-image-wrapper {
             height: 340px;
             overflow: hidden;
-            position: relative;
         }
 
         .product-img {
@@ -318,7 +299,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            filter: contrast(0.95) brightness(0.98);
         }
 
         .product-card:hover .product-img {
@@ -370,7 +350,7 @@
             border: 1px solid #111;
         }
 
-        /* CART SIDEBAR */
+        /* CART */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -396,12 +376,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .cart-header h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
         }
 
         .cart-items-container {
@@ -468,73 +442,32 @@
             margin: 0 auto 60px;
         }
 
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
         .footer-col a {
             color: #bbb;
             display: block;
             margin-bottom: 12px;
-            transition: color 0.3s;
         }
 
         .footer-col a:hover {
             color: white;
         }
-
-        /* UTILITIES */
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #111;
-            color: white;
-            font-size: 0.75rem;
-            padding: 4px 14px;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 992px) {
-            .nav-menu {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            .search-container {
-                width: 200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- OVERLAY -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 
     <!-- HEADER -->
     <header>
         <div class="nav-container">
             <div class="logo-container" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-                <img src="1.png" alt="DIGI Logo" class="logo-img">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&auto=format&fit=crop&q=80" alt="DIGI Logo" class="logo-img">
+                <span class="brand-name">DIGI</span>
             </div>
 
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#" class="active">Catálogo</a></li>
-                    <li><a href="#" onclick="showSection('about')">Nosotros</a></li>
-                    <li><a href="#" onclick="showSection('journal')">Journal</a></li>
+                    <li><a href="#">Nosotros</a></li>
                 </ul>
             </nav>
 
@@ -545,17 +478,15 @@
                 </div>
                 
                 <button class="cart-icon-container" onclick="toggleCart()" aria-label="Ver carrito">
-                    <i class="fas fa-shopping-bag cart-icon-svg"></i>
+                    <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-                
-                <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
             </div>
         </div>
     </header>
 
     <!-- HERO -->
-    <section class="hero" id="hero">
+    <section class="hero">
         <div class="hero-content">
             <h1>DIGITALHOME</h1>
             <p>Objetos que mejoran tu vida. Diseño atemporal, tecnología sin ruido.</p>
@@ -566,30 +497,16 @@
     </section>
 
     <main class="container">
-        <!-- FILTERS -->
-        <div class="category-filters" id="categoryFilters">
+        <div class="category-filters">
             <button class="filter-btn active" data-category="all" onclick="filterProducts('all', this)">Todo</button>
             <button class="filter-btn" data-category="tecnologia" onclick="filterProducts('tecnologia', this)">Tecnología</button>
             <button class="filter-btn" data-category="audio" onclick="filterProducts('audio', this)">Audio</button>
             <button class="filter-btn" data-category="hogar" onclick="filterProducts('hogar', this)">Hogar</button>
         </div>
 
-        <!-- PRODUCTS SECTION -->
         <section id="productsSection">
             <h2 class="section-title">Colección Actual</h2>
-            
-            <div class="products-grid" id="productsGrid">
-                <!-- Products populated by JS for easier management -->
-            </div>
-        </section>
-
-        <!-- ABOUT TEASER -->
-        <section style="margin: 140px 0; text-align: center; padding: 80px 40px; background: #f9f9f9;">
-            <h2 style="font-size: 2.6rem; margin-bottom: 24px;">Curaduría sin compromiso</h2>
-            <p style="max-width: 680px; margin: 0 auto; font-size: 1.25rem; color: #555;">
-                Seleccionamos solo los objetos que cumplen nuestros estándares de minimalismo, calidad y funcionalidad. 
-                Menos, pero mejor.
-            </p>
+            <div class="products-grid" id="productsGrid"></div>
         </section>
     </main>
 
@@ -600,9 +517,7 @@
             <button onclick="toggleCart()" style="background:none;border:none;font-size:2rem;cursor:pointer;">×</button>
         </div>
         
-        <div class="cart-items-container" id="cartItems">
-            <!-- JS populated -->
-        </div>
+        <div class="cart-items-container" id="cartItems"></div>
         
         <div style="padding: 28px; border-top: 1px solid #eee; background: #fafafa;">
             <div style="display:flex;justify-content:space-between;font-size:1.4rem;font-weight:800;margin-bottom:24px;" id="cartTotalRow">
@@ -616,93 +531,39 @@
         </div>
     </aside>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-logo">DIGITALHOME</div>
-        
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Tienda</h4>
-                <a href="#">Catálogo</a>
-                <a href="#">Ofertas</a>
-                <a href="#">Envíos</a>
-            </div>
-            <div class="footer-col">
-                <h4>Compañía</h4>
-                <a href="#">Sobre Nosotros</a>
-                <a href="#">Journal</a>
-                <a href="#">Contacto</a>
-            </div>
-            <div class="footer-col">
-                <h4>Soporte</h4>
-                <a href="#">Garantía</a>
-                <a href="#">Devoluciones</a>
-                <a href="#">FAQ</a>
-            </div>
-        </div>
-        
         <p style="opacity:0.5;font-size:0.9rem;">© 2026 DigitalHome (DIGI). Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Products Data
+        // ==================== PRODUCTOS ====================
         let products = [
-            {
-                id: 1,
-                category: "tecnologia",
-                title: "Tablet E-Ink Black Edition",
-                price: 950000,
-                img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 2,
-                category: "audio",
-                title: "Auriculares Studio Wireless",
-                price: 620000,
-                img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 3,
-                category: "hogar",
-                title: "Reloj de Pulso Monocromático",
-                price: 380000,
-                img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 4,
-                category: "tecnologia",
-                title: "Teclado Mecánico Matte",
-                price: 450000,
-                img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 5,
-                category: "audio",
-                title: "Altavoz Cilíndrico Dark",
-                price: 290000,
-                img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 6,
-                category: "hogar",
-                title: "Lámpara de Escritorio Inteligente",
-                price: 185000,
-                img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80"
-            },
-            {
-                id: 7,
-                category: "tecnologia",
-                title: "Monitor OLED 4K Minimal",
-                price: 1850000,
-                img: "https://images.unsplash.com/photo-1593640402442-4c0c6c3c3e3e?w=800&auto=format&fit=crop&q=80"
-            }
+            { id: 1, category: "tecnologia", title: "Tablet E-Ink Black Edition", price: 950000, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80" },
+            { id: 2, category: "audio", title: "Auriculares Studio Wireless", price: 620000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" },
+            { id: 3, category: "hogar", title: "Reloj de Pulso Monocromático", price: 380000, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80" },
+            { id: 4, category: "tecnologia", title: "Teclado Mecánico Matte", price: 450000, img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&auto=format&fit=crop&q=80" },
+            { id: 5, category: "audio", title: "Altavoz Cilíndrico Dark", price: 290000, img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&auto=format&fit=crop&q=80" },
+            { id: 6, category: "hogar", title: "Lámpara de Escritorio Inteligente", price: 185000, img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80" }
         ];
 
         let cart = [];
 
         const WHATSAPP_NUMBER = "573018824828";
 
-        // Render Products
+        // ==================== PERSISTENCIA ====================
+        function saveCart() {
+            localStorage.setItem('digi_cart', JSON.stringify(cart));
+        }
+
+        function loadCart() {
+            const savedCart = localStorage.getItem('digi_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        }
+
+        // ==================== RENDER ====================
         function renderProducts(filteredProducts) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -727,34 +588,44 @@
             });
         }
 
-        // Filter Products
         window.filterProducts = function(category, button) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            let filtered = products;
-            if (category !== 'all') {
-                filtered = products.filter(p => p.category === category);
-            }
+            let filtered = category === 'all' ? products : products.filter(p => p.category === category);
             renderProducts(filtered);
         };
 
-        // Cart Functions
+        // ==================== CARRITO ====================
         window.addToCart = function(id) {
             const product = products.find(p => p.id === id);
             if (!product) return;
 
             const existing = cart.find(item => item.id === id);
-            
             if (existing) {
                 existing.quantity += 1;
             } else {
-                cart.push({...product, quantity: 1});
+                cart.push({ ...product, quantity: 1 });
             }
 
+            saveCart();
             updateCartUI();
-            toggleCart(); // open cart
+            toggleCart(); // abre el carrito
+        };
+
+        window.changeQuantity = function(index, change) {
+            const item = cart[index];
+            if (!item) return;
+            item.quantity += change;
+            if (item.quantity < 1) item.quantity = 1;
+            saveCart();
+            updateCartUI();
+        };
+
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartUI();
         };
 
         function updateCartUI() {
@@ -797,29 +668,13 @@
             totalEl.textContent = '$ ' + total.toLocaleString('es-CO');
         }
 
-        window.changeQuantity = function(index, change) {
-            const item = cart[index];
-            if (!item) return;
-            
-            item.quantity += change;
-            if (item.quantity < 1) item.quantity = 1;
-            updateCartUI();
-        };
-
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        };
-
         window.toggleCart = function() {
             const sidebar = document.getElementById('cartSidebar');
             const overlay = document.getElementById('cartOverlay');
-            
             sidebar.classList.toggle('open');
             overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
         };
 
-        // WhatsApp Order
         window.sendOrderToWhatsApp = function() {
             if (cart.length === 0) {
                 alert("El carrito está vacío");
@@ -827,7 +682,6 @@
             }
 
             let message = `*Nuevo Pedido - DIGITALHOME*\n\n`;
-            
             cart.forEach((item, i) => {
                 message += `${i+1}. ${item.title}\n`;
                 message += `   Cantidad: ${item.quantity}\n`;
@@ -840,44 +694,30 @@
 
             const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
+
+            // Opcional: vaciar carrito después de enviar
+            // cart = []; saveCart(); updateCartUI(); toggleCart();
         };
 
-        // Search
         window.handleSearch = function(e) {
             if (e.key === 'Enter') {
                 const term = document.getElementById('searchInput').value.toLowerCase().trim();
-                if (!term) {
-                    renderProducts(products);
-                    return;
-                }
+                if (!term) return renderProducts(products);
                 
                 const filtered = products.filter(p => 
-                    p.title.toLowerCase().includes(term) || 
-                    p.category.toLowerCase().includes(term)
+                    p.title.toLowerCase().includes(term) || p.category.toLowerCase().includes(term)
                 );
                 renderProducts(filtered);
             }
         };
 
-        // Simple mobile menu placeholder
-        function toggleMobileMenu() {
-            alert("Menú móvil completo (en producción se implementaría un drawer)");
-        }
-
-        function showSection(section) {
-            if (section === 'about') {
-                alert("Sección 'Nosotros' - En producción");
-            } else if (section === 'journal') {
-                alert("DigitalHome Journal - Próximamente");
-            }
-        }
-
-        // Initialize
+        // ==================== INIT ====================
         function init() {
+            loadCart();
             renderProducts(products);
             updateCartUI();
-            
-            // Keyboard ESC for cart
+
+            // Cerrar carrito con ESC
             document.addEventListener('keydown', (e) => {
                 if (e.key === "Escape") {
                     const sidebar = document.getElementById('cartSidebar');

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalHome (DIGI) | Tienda Premium</title>
+    <style>
+        /* --- ESTILOS GLOBALES (MINIMALISTA BLANCO Y NEGRO) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            padding-top: 80px; /* Espacio para el navbar fijo */
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #000000;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        /* ESPACIO PARA TU LOGO */
+        .logo-img {
+            width: 45px; 
+            height: 45px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            border: 1px solid #000000;
+            padding: 2px;
+        }
+
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            border-bottom: 2px solid #000000;
+        }
+
+        /* BOTÓN DEL CARRITO EN NAV */
+        .cart-icon-container {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon-svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #000000;
+            color: #ffffff;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* --- FILTROS DE CATEGORÍAS --- */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
+            padding: 10px 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* --- SECCIÓN DE PRODUCTOS --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        .product-card {
+            border: 1px solid #e5e5e5;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            border-color: #000000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background-color: #fcfcfc;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /* ESPACIO PARA IMÁGENES DE PRODUCTO */
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.06);
+        }
+
+        .product-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #7f7f7f;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* --- PANEL LATERAL DEL CARRITO (CARRITO DESPLEGABLE) --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px; /* Oculto por defecto */
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+            z-index: 2000;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #000000;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid #000000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            font-weight: 300;
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        /* ITEM INDIVIDUAL EN EL CARRITO */
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e5e5;
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            border: 1px solid #e5e5e5;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cart-item-qty {
+            font-size: 0.8rem;
+            color: #7f7f7f;
+            margin-top: 4px;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #ff0000;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+
+        .cart-empty-msg {
+            text-align: center;
+            color: #7f7f7f;
+            margin-top: 40px;
+        }
+
+        /* TOTAL Y BOTÓN DE WHATSAPP */
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid #000000;
+            background-color: #f9f9f9;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 16px;
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-checkout:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* CAPA DE FONDO OSCURO CUANDO EL CARRITO ESTÁ ABIERTO */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 1500;
+            display: none;
+        }
+
+        .cart-overlay.open {
+            display: block;
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 60px 20px 30px 20px;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            opacity: 0.4;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px;
+            }
+            .nav-menu {
+                display: none; /* En producción añadirías un menú hamburguesa */
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .cart-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CAPA OSCURA FONDO -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-container" onclick="window.scrollTo(0,0)">
+                <!-- ESPACIO PARA EL LOGO -->
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&auto=format&fit=crop&q=60" alt="DIGI Logo" class="logo-img">
+                <span class="brand-name">DIGI</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Catálogo</a></li>
+                    <li><a href="#" onclick="alert('Sección Informativa: DigitalHome 2026')">Nosotros</a></li>
+                </ul>
+            </nav>
+
+            <!-- BOTÓN CARRITO COMPRAS -->
+            <button class="cart-icon-container" onclick="toggleCart()">
+                <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO HERO BANNER -->
+    <section class="hero">
+        <h1>DIGITALHOME</h1>
+        <p>Ecosistemas inteligentes, audio de alta fidelidad y herramientas tecnológicas diseñadas bajo una curaduría estrictamente minimalista y funcional.</p>
+    </section>
+
+    <!-- SECCIÓN DE VENTAS -->
+    <main class="container">
+        <h2 class="section-title">Colección Disponible</h2>
+
+        <!-- BARRA DE FILTROS (FUNCIÓN ADICIONAL) -->
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterProducts('all', this)">Todo</button>
+            <button class="filter-btn" onclick="filterProducts('tecnologia', this)">Tecnología</button>
+            <button class="filter-btn" onclick="filterProducts('audio', this)">Audio</button>
+            <button class="filter-btn" onclick="filterProducts('hogar', this)">Hogar</button>
+        </div>
+        
+        <!-- GRILLA EXTENSA DE PRODUCTOS -->
+        <div class="products-grid" id="productsGrid">
+            
+            <!-- PRODUCTO 1 -->
+            <article class="product-card" data-category="tecnologia">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80" alt="Tablet DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Tecnología</span>
+                    <h3 class="product-title">Tablet E-Ink Black Edition</h3>
+                    <p class="product-price" data-price="950000">$ 950.000</p>
+                    <button class="btn-add" onclick="addToCart(1, 'Tablet E-Ink Black Edition', 950000, 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 2 -->
+            <article class="product-card" data-category="audio">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Auriculares DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Audio</span>
+                    <h3 class="product-title">Auriculares Studio Wireless</h3>
+                    <p class="product-price" data-price="620000">$ 620.000</p>
+                    <button class="btn-add" onclick="addToCart(2, 'Auriculares Studio Wireless', 620000, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 3 -->
+            <article class="product-card" data-category="hogar">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80" alt="Reloj DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Hogar</span>
+                    <h3 class="product-title">Reloj de Pulso Monocromático</h3>
+                    <p class="product-price" data-price="380000">$ 380.000</p>
+                    <button class="btn-add" onclick="addToCart(3, 'Reloj de Pulso Monocromático', 380000, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 4 -->
+            <article class="product-card" data-category="tecnologia">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&auto=format&fit=crop&q=80" alt="Teclado DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Tecnología</span>
+                    <h3 class="product-title">Teclado Mecánico Matte DIGI</h3>
+                    <p class="product-price" data-price="450000">$ 450.000</p>
+                    <button class="btn-add" onclick="addToCart(4, 'Teclado Mecánico Matte DIGI', 450000, 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 5 -->
+            <article class="product-card" data-category="audio">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop&q=80" alt="Parlante DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Audio</span>
+                    <h3 class="product-title">Altavoz Cilíndrico Dark Sound</h3>
+                    <p class="product-price" data-price="290000">$ 290.000</p>
+                    <button class="btn-add" onclick="addToCart(5, 'Altavoz Cilíndrico Dark Sound', 290000, 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 6 -->
+            <article class="product-card" data-category="hogar">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&auto=format&fit=crop&q=80" alt="Lámpara DIGI" class="product-img">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Hogar</span>
+                    <h3 class="product-title">Lámpara de Escritorio Inteligente</h3>
+                    <p class="product-price" data-price="185000">$ 185.000</p>
+                    <button class="btn-add" onclick="addToCart(6, 'Lámpara de Escritorio Inteligente', 185000, 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=100&auto=format&fit=crop&q=80')">Agregar al Carrito</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- PANEL LATERAL DEL CARRITO COMPRAS -->
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+
+        <!-- LISTADO INTERACTIVO -->
+        <div class="cart-items-container" id="cartItems">
+            <!-- Los productos agregados se inyectarán aquí mediante JS -->
+            <p class="cart-empty-msg">Tu carrito está vacío.</p>
+        </div>
+
+        <!-- SECCIÓN DE TOTAL Y ACCIÓN -->
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotal">$ 0</span>
+            </div>
+            <!-- FUNCIÓN PRINCIPAL DE ENVIAR PEDIDO A WHATSAPP -->
+            <button class="btn-checkout" onclick="sendOrderToWhatsApp()">
+                Pedir por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <div class="footer-logo">DIGITALHOME (DIGI)</div>
+        <ul class="footer-links">
+            <li><a href="#">Términos</a></li>
+            <li><a href="#">Garantías</a></li>
+            <li><a href="#">Soporte</a></li>
+        </ul>
+        <p class="footer-text">&copy; 2026 DigitalHome. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- --- LÓGICA Y FUNCIONALIDADES EN JAVASCRIPT --- -->
+    <script>
+        // Array global para almacenar los productos en el carrito
+        let cart = [];
+        const WHATSAPP_NUMBER = "573018824828"; // Formato internacional completo para Colombia (57)
+
+        // Función para abrir y cerrar el panel lateral del carrito
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        // Función para agregar un artículo al carrito
+        function addToCart(id, title, price, imgUrl) {
+            // Verificar si ya existe en el carrito para sumar la cantidad
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    title: title,
+                    price: price,
+                    img: imgUrl,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            
+            // Efecto visual: Abre automáticamente el carrito para ver el progreso de la compra
+            toggleCart();
+        }
+
+        // Función para remover un artículo del carrito
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Función para formatear los números a formato moneda local ($ X.XXX.XXX)
+        function formatCurrency(value) {
+            return '$ ' + value.toLocaleString('es-CO');
+        }
+
+        // Función que actualiza la interfaz, contador y suma de totales
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCountLabel = document.getElementById('cartCount');
+            const cartTotalLabel = document.getElementById('cartTotal');
+            
+            // Limpiar contenedor
+            cartItemsContainer.innerHTML = '';
+            
+            let totalItemsCount = 0;
+            let totalPriceSum = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="cart-empty-msg">Tu carrito está vacío.</p>';
+            } else {
+                cart.forEach(item => {
+                    totalItemsCount += item.quantity;
+                    totalPriceSum += (item.price * item.quantity);
+
+                    // Crear el componente HTML para cada ítem en el carrito
+                    const itemHTML = `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h4 class="cart-item-title">${item.title}</h4>
+                                <p class="cart-item-price">${formatCurrency(item.price)}</p>
+                                <p class="cart-item-qty">Cantidad: ${item.quantity}</p>
+                                <button class="btn-remove" onclick="removeFromCart(${item.id})">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.innerHTML += itemHTML;
+                });
+            }
+
+            // Actualizar textos en pantalla
+            cartCountLabel.innerText = totalItemsCount;
+            cartTotalLabel.innerText = formatCurrency(totalPriceSum);
+        }
+
+        // Función Avanzada: Genera el texto estructurado del pedido y abre WhatsApp
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío. Agrega algunos productos antes de enviar el pedido.");
+                return;
+            }
+
+            // Crear encabezado de mensaje elegante
+            let textMessage = `*NUEVO PEDIDO - DIGITALHOME (DIGI)*\n`;
+            textMessage += `=============================\n\n`;
+            
+            let totalPedido = 0;
+
+            // Recorrer los productos del carrito
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                totalPedido += subtotal;
+                textMessage += `${index + 1}. *${item.title}*\n`;
+                textMessage += `   Cantidad: ${item.quantity}\n`;
+                textMessage += `   Precio unitario: ${formatCurrency(item.price)}\n`;
+                textMessage += `   Subtotal: ${formatCurrency(subtotal)}\n\n`;
+            });
+
+            textMessage += `=============================\n`;
+            textMessage += `*VALOR TOTAL A PAGAR:* ${formatCurrency(totalPedido)}\n\n`;
+            textMessage += `_Por favor, confírmame disponibilidad para coordinar el envío._`;
+
+            // Codificar el texto para formato URL seguro
+            const urlEncodedMessage = encodeURIComponent(textMessage);
+            
+            // Construir enlace de la API de WhatsApp
+            const whatsAppUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${urlEncodedMessage}`;
+            
+            // Redirigir al cliente
+            window.open(whatsAppUrl, '_blank');
+        }
+
+        // Función del filtro por categorías
+        function filterProducts(category, button) {
+            // Cambiar estado activo de los botones
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filtrar las tarjetas de productos
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

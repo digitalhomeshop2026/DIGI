@@ -170,7 +170,6 @@
         .cart-item-img { width:70px; height:70px; object-fit:cover; border:1px solid var(--border); }
         .cart-item-details { flex:1; display:flex; flex-direction:column; justify-content:space-between; }
 
-        /* Controles de Cantidad Modificados */
         .qty-controls { display:flex; align-items:center; gap:4px; margin-top:8px; }
         .btn-qty { 
             background:var(--bg-alt); border:1px solid var(--border); color:var(--text); 
@@ -234,7 +233,7 @@
         <div class="detail-modal">
             <button class="detail-close" onclick="closeDetailModal()">&times;</button>
             <div class="detail-gallery">
-                <img id="1.png" class="detail-main-img" src="" alt="Vista detallada">
+                <img id="detailMainImg" class="detail-main-img" src="" alt="Vista detallada">
             </div>
             <div class="detail-info">
                 <span class="product-category" id="detailCategory">Categoría</span>
@@ -249,7 +248,8 @@
     <header>
         <div class="nav-container">
             <div class="logo-container" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                <img src="1.png" alt="logo" loading="lazy">
+                <img src="1.png" alt="logo" class="logo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60'">
+                <span class="brand-name">DIGI</span>
             </div>
             <nav aria-label="Navegación principal">
                 <ul class="nav-menu">
@@ -311,8 +311,7 @@
             <h2>Tu Carrito</h2>
             <button style="background:none; border:none; font-size:1.5rem; color:var(--text);" onclick="toggleCart()">&times;</button>
         </div>
-        <div class="cart-items-container" id="cartItemsContainer">
-            </div>
+        <div class="cart-items-container" id="cartItemsContainer"></div>
         <div class="cart-footer">
             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem; margin-bottom:20px;">
                 <span>Total:</span>
@@ -392,13 +391,12 @@
         let categoriaActual = 'all';
 
         document.addEventListener("DOMContentLoaded", () => {
-            loadCartFromStorage(); // Carga el estado guardado al iniciar la página
+            loadCartFromStorage();
             renderProducts(productos);
             setupSearch();
             setupTheme();
         });
 
-        // Genera las tarjetas en la página
         function renderProducts(lista) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -427,7 +425,6 @@
             document.getElementById('productResultsCounter').innerText = `Mostrando ${lista.length} productos`;
         }
 
-        // Sistema de Carrito de Compras con persistencia
         function addToCart(id) {
             const prod = productos.find(p => p.id === id);
             const itemExistente = carrito.find(item => item.id === id);
@@ -441,7 +438,6 @@
             updateCartUI();
         }
 
-        // Cambiar cantidad de productos individualmente (+ / -)
         function changeQty(id, delta) {
             const item = carrito.find(i => i.id === id);
             if (!item) return;
@@ -462,7 +458,6 @@
             updateCartUI();
         }
 
-        // Guardar y cargar datos de LocalStorage
         function saveCartToStorage() {
             localStorage.setItem('digi_cart', JSON.stringify(carrito));
         }
@@ -522,7 +517,6 @@
             totalLabel.innerText = `$${total.toLocaleString('co-CO')}`;
         }
 
-        // Abrir Modal de Detalle
         function openDetailModal(id) {
             const prod = productos.find(p => p.id === id);
             if(!prod) return;
@@ -546,7 +540,6 @@
         function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); document.getElementById('cartOverlay').classList.toggle('open'); }
         function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
-        // Filtros por Categoría
         function filterCategory(cat, btn) {
             categoriaActual = cat;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -571,7 +564,6 @@
             renderProducts(resultado);
         }
 
-        // Ordenar Productos
         function sortProducts() {
             const criteria = document.getElementById('sortSelect').value;
             let copia = [...productos];
@@ -586,7 +578,6 @@
             renderProducts(copia);
         }
 
-        // Integración con API de WhatsApp
         function checkoutWhatsApp() {
             if(carrito.length === 0) {
                 alert("Tu carrito está vacío.");
@@ -615,7 +606,6 @@
 
         function closeSuccessModal() { document.getElementById('successModal').classList.remove('open'); }
 
-        // Modo Oscuro / Claro
         function setupTheme() {
             const toggle = document.getElementById('themeToggle');
             toggle.addEventListener('click', () => {

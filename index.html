@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DigitalHome (DIGI) - Ecosistemas inteligentes, audio premium y diseño minimalista.">
-    <title>DIGITALHOME (DIGI)</title>
+    <meta name="description" content="DIGI - Tienda Virtual de Tecnología, Gadgets y Productos Inteligentes para el Hogar.">
+    <title>DIGI | Tienda Virtual de Tecnología y Hogar</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
     <link rel="preconnect" href="https://images.unsplash.com">
@@ -19,14 +19,14 @@
             --bg: #ffffff; --bg-alt: #fcfcfc; --text: #000000; --text-inv: #ffffff;
             --border: #e8e8e8; --muted: #707070; --card-bg: #ffffff;
             --footer-bg: #000000; --footer-text: #eaeaea;
-            --hero-overlay: rgba(255,255,255,0.05); --shadow: rgba(0,0,0,0.05);
+            --hero-overlay: rgba(0,0,0,0.4); --shadow: rgba(0,0,0,0.05);
             --success: #25D366; --danger: #d93838;
             --transition: 0.25s cubic-bezier(0.25, 1, 0.5, 1);
         }
         [data-theme="dark"] {
             --bg: #0a0a0a; --bg-alt: #121212; --text: #ffffff; --text-inv: #0a0a0a;
             --border: #1f1f1f; --muted: #888888; --card-bg: #0d0d0d;
-            --hero-overlay: rgba(0,0,0,0.5); --shadow: rgba(0,0,0,0.3);
+            --hero-overlay: rgba(0,0,0,0.6); --shadow: rgba(0,0,0,0.3);
         }
         
         /* ==========================================================================
@@ -46,7 +46,7 @@
         :focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
         /* ==========================================================================
-           HEADER / NAVBAR (CORREGIDO)
+           HEADER / NAVBAR (SIN TEXTO 'DIGI' AL LADO DEL LOGO)
            ========================================================================== */
         header {
             position: fixed; top:0; left:0; width:100%;
@@ -61,16 +61,15 @@
             height: 80px; display:flex; align-items:center; justify-content:space-between;
         }
         
-        /* Ajuste de Logo: Sin fondos raros ni bordes oscuros */
-        .logo-container { display:flex; align-items:center; gap:14px; cursor:pointer; }
+        /* Contenedor del Logo Limpio (Solo la Imagen) */
+        .logo-container { display:flex; align-items:center; cursor:pointer; }
         .logo-img { 
-            width:38px; height:38px; 
+            width:42px; height:42px; 
             object-fit:contain; 
-            background:transparent; /* Limpio de contenedores negros antiguos */
+            background:transparent;
             transition: opacity 0.2s;
         }
         .logo-container:hover .logo-img { opacity: 0.8; }
-        .brand-name { font-size:1.3rem; font-weight:800; letter-spacing:2px; }
         
         .nav-menu { display:flex; list-style:none; gap:40px; }
         .nav-menu a {
@@ -118,33 +117,33 @@
         .mobile-menu a { display:block; padding:16px 0; font-size:1rem; font-weight:600; border-bottom:1px solid var(--border); }
 
         /* ==========================================================================
-           HERO SECTION (CORREGIDA CON ESTILO MINIMALISTA MODERNO)
-           ========================================================================== */
+           HERO SECTION (TIENDA COMERCIAL)
+           ========================================================================= */
         .hero {
-            min-height: 65vh; display:flex; align-items:center; justify-content:center;
+            min-height: 60vh; display:flex; align-items:center; justify-content:center;
             text-align:center; position:relative; overflow:hidden; background:#0a0a0a; color:#ffffff;
         }
-        /* Imagen elegante y moderna de un set de hogar/tecnología minimalista */
         .hero-bg-img { 
             position:absolute; top:0; left:0; width:100%; height:100%; 
-            object-fit:cover; opacity:0.5; z-index:0;
-            filter: grayscale(100%) contrast(110%);
+            object-fit:cover; opacity:0.4; z-index:0;
+            filter: grayscale(100%) contrast(105%);
         }
         .hero::after {
             content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); z-index:1;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%); z-index:1;
         }
-        .hero-content { max-width:750px; position:relative; z-index:2; padding: 0 24px; }
-        .hero h1 { font-size:clamp(2.2rem, 5vw, 3.8rem); font-weight:800; letter-spacing:-0.5px; margin-bottom:20px; text-transform: uppercase; }
-        .hero p { font-size:1.05rem; opacity:0.85; max-width:540px; margin:0 auto 36px; font-weight: 300; letter-spacing: 0.5px; }
+        .hero-content { max-width:800px; position:relative; z-index:2; padding: 0 24px; }
+        .hero h1 { font-size:clamp(2rem, 4.5vw, 3.5rem); font-weight:800; letter-spacing:-0.5px; margin-bottom:16px; text-transform: uppercase; }
+        .hero p { font-size:1.1rem; opacity:0.9; max-width:600px; margin:0 auto 32px; font-weight: 300; }
         .cta-button {
             padding:14px 36px; font-size:0.8rem; font-weight:700; letter-spacing:2px;
             text-transform:uppercase; background:#ffffff; color:#000000; border:1px solid #ffffff; transition:all var(--transition);
+            border-radius: 4px;
         }
         .cta-button:hover { background:transparent; color:#ffffff; }
 
         /* ==========================================================================
-           GRID DE PRODUCTOS Y FILTROS
+           CATÁLOGO DE PRODUCTOS
            ========================================================================== */
         .container { max-width:1340px; margin:60px auto; padding:0 32px; }
         .section-title { font-size:1.4rem; font-weight:800; text-transform:uppercase; letter-spacing:3px; text-align:center; margin-bottom:45px; }
@@ -157,7 +156,7 @@
         }
         .filter-btn.active, .filter-btn:hover { border-color:var(--text); color:var(--text); background: var(--bg-alt); }
 
-        .controls-row { display:flex; justify-content:between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:30px; border-bottom: 1px solid var(--border); padding-bottom: 15px;}
+        .controls-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:30px; border-bottom: 1px solid var(--border); padding-bottom: 15px;}
         .sort-select { padding:8px 12px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.8rem; border-radius:4px; }
 
         .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:32px; }
@@ -223,7 +222,7 @@
         .btn-modal { margin-top: 24px; padding:12px 32px; background:var(--text); color:var(--text-inv); font-weight:700; text-transform:uppercase; font-size:0.8rem; border-radius:4px; }
 
         /* ==========================================================================
-           RESPONSIVE DESIGN (MEDIA QUERIES)
+           RESPONSIVE DESIGN
            ========================================================================== */
         @media (max-width:768px) {
             .detail-modal { grid-template-columns:1fr; }
@@ -234,7 +233,7 @@
         }
         
         footer { background:var(--footer-bg); color:var(--footer-text); padding:50px 24px; text-align:center; margin-top: 100px; }
-        .footer-logo { font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:12px; letter-spacing: 2px; }
+        .footer-logo { font-size:1.4rem; font-weight:900; color:#fff; margin-bottom:12px; letter-spacing: 2px; }
         .footer-copy { font-size:0.75rem; opacity:0.4; margin-top: 20px; }
     </style>
 </head>
@@ -245,9 +244,9 @@
     <div class="modal-overlay" id="successModal">
         <div class="modal">
             <i class="fab fa-whatsapp" style="font-size:2.5rem; color:var(--success);"></i>
-            <h2 style="margin-top:15px; font-weight:800;">¡Pedido listo!</h2>
-            <p style="margin-top:10px; color:var(--muted); font-size:0.9rem;">Tu orden ha sido estructurada de forma limpia. Te estamos redirigiendo a WhatsApp para finalizar la confirmación.</p>
-            <button class="btn-modal" onclick="closeSuccessModal()">Entendido</button>
+            <h2 style="margin-top:15px; font-weight:800;">¡Pedido Generado!</h2>
+            <p style="margin-top:10px; color:var(--muted); font-size:0.9rem;">Tu orden de compra se procesó correctamente. Serás redirigido a WhatsApp para coordinar el pago y el envío de tus productos.</p>
+            <button class="btn-modal" onclick="closeSuccessModal()">Continuar</button>
         </div>
     </div>
 
@@ -255,7 +254,7 @@
         <div class="detail-modal">
             <button class="detail-close" onclick="closeDetailModal()">&times;</button>
             <div class="detail-gallery">
-                <img id="detailMainImg" class="detail-main-img" src="" alt="Vista detallada">
+                <img id="detailMainImg" class="detail-main-img" src="" alt="Producto">
             </div>
             <div class="detail-info">
                 <span class="product-category" id="detailCategory">Categoría</span>
@@ -269,61 +268,60 @@
 
     <header>
         <div class="nav-container">
+            <!-- Corregido: Solo la imagen del logo, sin texto a los lados -->
             <div class="logo-container" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                <!-- Se eliminó la clase forzada anterior y se eliminó el fondo negro que rompía el logo -->
-                <img src="1.png" alt="logo" class="logo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60'">
-                <span class="brand-name">DIGI</span>
+                <img src="1.png" alt="DIGI Logo" class="logo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60'">
             </div>
-            <nav aria-label="Navegación principal">
+            <nav aria-label="Navegación comercial">
                 <ul class="nav-menu">
-                    <li><a href="#catalogo" class="active">Catálogo</a></li>
+                    <li><a href="#catalogo" class="active">Catálogo de Productos</a></li>
                 </ul>
             </nav>
             <div class="nav-right">
-                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo de luz u oscuridad"><i class="fas fa-moon"></i></button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Modo Claro/Oscuro"><i class="fas fa-moon"></i></button>
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" class="search-input" id="searchInput" placeholder="Buscar productos...">
                 </div>
-                <button class="nav-btn" onclick="toggleCart()" aria-label="Ver bolsa de compras">
+                <button class="nav-btn" onclick="toggleCart()" aria-label="Ver carrito">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-                <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menú de navegación"><i class="fas fa-bars"></i></button>
+                <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menú"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </header>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#catalogo" onclick="toggleMobileMenu()">Catálogo</a>
+        <a href="#catalogo" onclick="toggleMobileMenu()">Catálogo de Productos</a>
     </div>
 
+    <!-- Hero enfocado 100% en la tienda virtual -->
     <section class="hero">
-        <!-- Reemplazada la imagen retro pixelada por una de arquitectura e interiores minimalistas modernos -->
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=85" alt="Diseño de interiores minimalista inteligente" class="hero-bg-img">
+        <img src="https://images.unsplash.com/photo-1522204538344-922f76ecc041?w=1600&auto=format&fit=crop&q=80" alt="Tecnología y Hogar Inteligente" class="hero-bg-img">
         <div class="hero-content">
-            <h1>Ecosistemas Inteligentes</h1>
-            <p>Líneas limpias, funcionalidad pura. Dispositivos premium diseñados minuciosamente para integrarse con sutileza en tu espacio.</p>
-            <button class="cta-button" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Explorar Colección</button>
+            <h1>Tecnología & Productos para el Hogar</h1>
+            <p>Explora nuestro inventario disponible. Dispositivos innovadores, accesorios de alta tecnología y soluciones inteligentes listos para envío inmediato.</p>
+            <button class="cta-button" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver Todo el Inventario</button>
         </div>
     </section>
 
     <main class="container" id="catalogo">
-        <h2 class="section-title">Línea de Productos</h2>
+        <h2 class="section-title">Productos Disponibles</h2>
         
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
-            <button class="filter-btn" onclick="filterCategory('audio', this)">Audio Premium</button>
+            <button class="filter-btn active" onclick="filterCategory('all', this)">Todos los Productos</button>
+            <button class="filter-btn" onclick="filterCategory('tecnologia', this)">Tecnología & Gadgets</button>
             <button class="filter-btn" onclick="filterCategory('hogar', this)">Hogar Inteligente</button>
             <button class="filter-btn" onclick="filterCategory('accesorios', this)">Accesorios</button>
         </div>
 
         <div class="controls-row">
-            <span style="font-size:0.8rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:1px;" id="productResultsCounter">Cargando inventario</span>
+            <span style="font-size:0.8rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:1px;" id="productResultsCounter">Cargando catálogo...</span>
             <select class="sort-select" id="sortSelect" onchange="sortProducts()">
-                <option value="default">Filtrar precio</option>
-                <option value="low">Precio: Menor a Mayor</option>
-                <option value="high">Precio: Mayor a Menor</option>
+                <option value="default">Ordenar por Precio</option>
+                <option value="low">Menor a Mayor precio</option>
+                <option value="high">Mayor a Menor precio</option>
             </select>
         </div>
 
@@ -332,78 +330,78 @@
 
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h2 style="font-size:1.2rem; font-weight:800; text-transform:uppercase; letter-spacing:1px;">Bolsa de pedido</h2>
+            <h2 style="font-size:1.1rem; font-weight:800; text-transform:uppercase; letter-spacing:1px;">Mi Carrito</h2>
             <button style="font-size:1.3rem;" onclick="toggleCart()">&times;</button>
         </div>
         <div class="cart-items-container" id="cartItemsContainer"></div>
         <div class="cart-footer">
             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem; margin-bottom:24px;">
-                <span>Subtotal:</span>
+                <span>Total Pedido:</span>
                 <span id="cartTotalValue">$0</span>
             </div>
             <button class="btn-checkout" onclick="checkoutWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Confirmar pedido por WhatsApp
+                <i class="fab fa-whatsapp"></i> Confirmar Pedido por WhatsApp
             </button>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">DIGITALHOME</div>
-        <p style="font-size:0.8rem; opacity:0.5; font-weight:300; letter-spacing:1px;">Objetos funcionales. Espacios en balance absoluto.</p>
-        <div class="footer-copy">&copy; 2026 DIGITALHOME (DIGI). Estética & Tecnología corporativa.</div>
+        <div class="footer-logo">DIGI</div>
+        <p style="font-size:0.8rem; opacity:0.6; font-weight:300; letter-spacing:1px;">Tu tienda virtual de tecnología y artículos inteligentes para el hogar.</p>
+        <div class="footer-copy">&copy; 2026 DIGI Store. Todos los derechos reservados. Conexión comercial directa.</div>
     </footer>
 
     <script>
         /* ==========================================================================
-           BASE DE DATOS DE PRODUCTOS DE LA TIENDA
+           BASE DE DATOS REAL DE PRODUCTOS DE LA TIENDA
            ========================================================================== */
         const productos = [
             { 
                 id: 1, 
-                title: 'Altavoz Premium Cube', 
-                category: 'audio', 
+                title: 'Parlante Inalámbrico de Alta Potencia', 
+                category: 'tecnologia', 
                 price: 249000, 
-                desc: 'Audio de alta fidelidad en un cuerpo monolítico compacto de aleación de aluminio pulido.', 
+                desc: 'Excelente calidad de audio, batería de larga duración y resistencia al agua. Ideal para cualquier espacio de tu hogar.', 
                 img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500&auto=format&fit=crop&q=80' 
             },
             { 
                 id: 2, 
-                title: 'Hub Ecosistema Inteligente', 
+                title: 'Controlador Hub Smart Home Zigbee', 
                 category: 'hogar', 
                 price: 189000, 
-                desc: 'Centraliza toda la domótica, automatizaciones e iluminación inteligente de tu hogar de forma simple.', 
+                desc: 'Dispositivo central para conectar y automatizar luces, sensores y electrodomésticos inteligentes desde tu celular.', 
                 img: 'https://images.unsplash.com/photo-1558089687-f282ffcbd1d5?w=500&auto=format&fit=crop&q=80' 
             },
             { 
                 id: 3, 
-                title: 'Audífonos Studio Wireless', 
-                category: 'audio', 
+                title: 'Audífonos Bluetooth Over-Ear ANC', 
+                category: 'tecnologia', 
                 price: 420000, 
-                desc: 'Cancelación activa de ruido adaptativa con un perfil estético impecable color negro mate.', 
+                desc: 'Cancelación activa de ruido, almohadillas ergonómicas de máxima comodidad y sonido nítido para llamadas y música.', 
                 img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80' 
             },
             { 
                 id: 4, 
-                title: 'Cargador Magnético Desk', 
+                title: 'Estación de Carga Rápida Inalámbrica 3 en 1', 
                 category: 'accesorios', 
                 price: 95000, 
-                desc: 'Estación de carga rápida inalámbrica construida sobre un bloque monolítico rígido de alta densidad.', 
+                desc: 'Carga simultáneamente tu celular, reloj inteligente y audífonos de forma rápida y sin cables desordenados.', 
                 img: 'https://images.unsplash.com/photo-1622445262465-2481c4574875?w=500&auto=format&fit=crop&q=80' 
             },
             { 
                 id: 5, 
-                title: 'Barra de Sonido Atmos Line', 
-                category: 'audio', 
+                title: 'Barra de Sonido para TV con Subwoofer', 
+                category: 'tecnologia', 
                 price: 680000, 
-                desc: 'Sonido envolvente arquitectónico de alta resolución diseñado para mimetizarse bajo pantallas planas.', 
+                desc: 'Mejora el sistema de entretenimiento de tu hogar con un audio envolvente de alta definición y conexión HDMI/Óptica.', 
                 img: 'https://images.unsplash.com/photo-1543512214-318c7553f230?w=500&auto=format&fit=crop&q=80' 
             },
             { 
                 id: 6, 
-                title: 'Lámpara Sensor Minimal', 
+                title: 'Lámpara LED de Escritorio con Sensor de Presencia', 
                 category: 'hogar', 
                 price: 155000, 
-                desc: 'Iluminación cálida indirecta regulable integrada con un sensor inteligente discreto de proximidad.', 
+                desc: 'Iluminación ajustable para trabajo o estudio con encendido automático por movimiento y puerto de carga USB.', 
                 img: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&auto=format&fit=crop&q=80' 
             }
         ];
@@ -423,7 +421,7 @@
             grid.innerHTML = '';
 
             if(lista.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 60px; color: var(--muted); font-size:0.9rem;">No se encontraron artículos en esta categoría.</p>';
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 60px; color: var(--muted); font-size:0.9rem;">No se encontraron productos coincidentes.</p>';
                 return;
             }
 
@@ -443,7 +441,7 @@
                 `;
                 grid.appendChild(card);
             });
-            document.getElementById('productResultsCounter').innerText = `${lista.length} ARTÍCULOS DISPONIBLES`;
+            document.getElementById('productResultsCounter').innerText = `${lista.length} Productos Disponibles`;
         }
 
         function addToCart(id) {
@@ -505,7 +503,7 @@
             let itemsCount = 0;
 
             if(carrito.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:var(--muted); margin-top:40px; font-size:0.9rem;">Tu bolsa de compras está vacía.</p>';
+                container.innerHTML = '<p style="text-align:center; color:var(--muted); margin-top:40px; font-size:0.9rem;">El carrito está vacío.</p>';
             } else {
                 carrito.forEach(item => {
                     total += item.price * item.qty;
@@ -526,7 +524,7 @@
                                     <span class="qty-num">${item.qty}</span>
                                     <button class="btn-qty" onclick="changeQty(${item.id}, 1)">+</button>
                                 </div>
-                                <button style="color:var(--danger); background:none; border:none; font-size:0.75rem; cursor:pointer; font-weight:600;" onclick="removeFromCart(${item.id})">Quitar</button>
+                                <button style="color:var(--danger); background:none; border:none; font-size:0.75rem; cursor:pointer; font-weight:600;" onclick="removeFromCart(${item.id})">Eliminar</button>
                             </div>
                         </div>
                     `;
@@ -601,19 +599,19 @@
 
         function checkoutWhatsApp() {
             if(carrito.length === 0) {
-                alert("Tu bolsa está vacía.");
+                alert("El carrito está vacío.");
                 return;
             }
 
-            let mensaje = "Hola, DigitalHome. Me interesa coordinar la compra de los siguientes productos:\n\n";
+            let mensaje = "Hola DIGI Store, quiero solicitar los siguientes productos de tecnología e inmuebles para el hogar:\n\n";
             let total = 0;
             
             carrito.forEach(item => {
-                mensaje += `• ${item.title} (x${item.qty}) - $${(item.price * item.qty).toLocaleString('co-CO')}\n`;
+                mensaje += `• ${item.title} (Cantidad: ${item.qty}) - $${(item.price * item.qty).toLocaleString('co-CO')}\n`;
                 total += item.price * item.qty;
             });
 
-            mensaje += `\n*Total de Compra:* $${total.toLocaleString('co-CO')}\n\nQuedo atento a la confirmación del despacho y medios de pago.`;
+            mensaje += `\n*Valor Total General:* $${total.toLocaleString('co-CO')}\n\nQuedo atento para coordinar los datos de envío y la cuenta de pago.`;
             
             const url = `https://api.whatsapp.com/send?phone=573000000000&text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');

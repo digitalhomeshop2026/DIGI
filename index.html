@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Parrillita - Chorizos Artesanales Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brasa:#C8281E; --brasa-osc:#9E1D15; --carbon:#1C1917; --carbon-2:#2A2623;
+  --hueso:#F2EFEA; --oro:#F2B705; --humo:#8A817A; --linea:#D9D3CA;
+  --display:'Anton','Impact',sans-serif; --body:'Figtree',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--body);font-size:1.05rem;line-height:1.65;color:var(--carbon);background:var(--hueso)}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.05;letter-spacing:.01em}
+:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;background:var(--carbon);border-bottom:3px solid var(--brasa)}
+.nav-in{display:flex;justify-content:space-between;align-items:center;height:72px}
+.logo{display:flex;align-items:center;font-family:var(--display);font-size:1.7rem;color:var(--hueso);letter-spacing:.02em}
+.logo{gap:12px}
+.logo img{height:48px;width:48px;background:var(--hueso);border-radius:50%;padding:5px;object-fit:contain;flex:none}
+.links{display:flex;gap:28px;list-style:none;align-items:center}
+.links a{font-weight:600;font-size:.95rem;color:#CFC8BF;transition:color .2s}
+.links a:hover{color:var(--oro)}
+.links .cta{background:var(--brasa);color:#fff;padding:10px 20px;border-radius:999px}
+.links .cta:hover{background:var(--brasa-osc);color:#fff}
+.toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.toggle svg{width:28px;height:28px;stroke:var(--hueso);stroke-width:2.5;fill:none}
+
+/* Hero */
+.hero{background:var(--brasa);color:#fff;padding:150px 0 90px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(3.2rem,8vw,6.6rem);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--oro);display:block}
+.hero p{font-size:1.2rem;max-width:30em;margin:28px 0 36px;color:#FDE7E3}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 30px;border-radius:999px;font:700 1rem var(--body);border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-oro{background:var(--oro);color:var(--carbon)}
+.btn-oro:hover{background:#fff}
+.btn-linea{border-color:#fff;color:#fff;background:none}
+.btn-linea:hover{background:#fff;color:var(--brasa)}
+.disc{background:var(--hueso);border-radius:50%;aspect-ratio:1;padding:7%;max-width:460px;margin-left:auto;box-shadow:0 0 0 10px rgba(255,255,255,.22)}
+.disc img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* Stats */
+.stats{background:var(--carbon);color:var(--hueso);padding:56px 0}
+.stats ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stats li{padding:0 28px;border-left:1px solid #4A433E}
+.stats li:first-child{border-left:0;padding-left:0}
+.stats b{display:block;font:400 3.6rem/1 var(--display);color:var(--oro);margin-bottom:10px}
+.stats span{font-size:.95rem;color:#CFC8BF;line-height:1.4;display:block}
+
+/* Sections */
+section{padding:100px 0}
+.sec-head{max-width:640px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(2.4rem,5vw,3.8rem);text-transform:uppercase}
+.sec-head p{color:#5E5750;margin-top:14px}
+
+/* Menu */
+.menu{list-style:none;border-top:2px solid var(--carbon)}
+.item{display:grid;grid-template-columns:240px 1fr auto;gap:12px 36px;align-items:center;padding:30px 0;border-bottom:1px solid var(--linea)}
+.item h3{font-size:2rem;margin-bottom:6px;text-transform:uppercase}
+.item p{color:#5E5750;max-width:38em;font-size:.98rem}
+.item img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;display:block}
+.pref{max-width:280px;margin-top:16px}
+.pref small{display:block;font-size:.85rem;color:#5E5750;margin-bottom:6px}
+.bar{height:8px;background:var(--linea);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brasa);border-radius:99px}
+.buy{display:flex;align-items:center;gap:20px}
+.price{font:400 2rem var(--display);color:var(--brasa)}
+.pedir{font:700 .95rem var(--body);background:var(--carbon);color:#fff;border-radius:999px;padding:11px 22px;transition:background .2s}
+.pedir:hover{background:var(--brasa)}
+.item.top{background:linear-gradient(90deg,rgba(242,183,5,.16),transparent 70%)}
+
+/* About */
+.about{background:#fff}
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.about h2{font-size:clamp(2.4rem,5vw,3.8rem);text-transform:uppercase}
+.about p{margin-bottom:22px;color:#3B3530;max-width:36em}
+.about p:last-child{margin:0}
+
+/* Pedido */
+.pedido{background:var(--carbon);color:var(--hueso)}
+.pedido .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:start}
+.pedido h2{font-size:clamp(2.4rem,5vw,3.8rem);text-transform:uppercase}
+.pedido .intro p{color:#CFC8BF;margin-top:14px}
+form{background:var(--carbon-2);padding:40px;border-radius:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fg{margin-bottom:22px}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:8px}
+input,select{width:100%;padding:14px 16px;background:var(--carbon);color:var(--hueso);border:2px solid #4A433E;border-radius:10px;font:inherit;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--oro);outline:none}
+input::placeholder{color:var(--humo)}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid #4A433E;margin-bottom:20px}
+.total b{font:400 2.2rem var(--display);color:var(--oro)}
+form .btn{width:100%;font-size:1.05rem}
+
+/* Footer */
+footer{background:#120F0E;color:#CFC8BF;padding:64px 0 32px}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+footer h4{font:700 1rem var(--body);color:var(--hueso);margin-bottom:16px}
+footer li{list-style:none;margin-bottom:10px;font-size:.95rem}
+footer a:hover{color:var(--oro)}
+footer .logo{margin-bottom:14px}
+.f-desc{max-width:26em;font-size:.95rem}
+.copy{margin-top:48px;padding-top:24px;border-top:1px solid #3A332F;font-size:.85rem;color:var(--humo)}
+
+@media (max-width:960px){
+  .hero .wrap,.about .wrap,.pedido .wrap{grid-template-columns:1fr;gap:40px}
+  .disc{max-width:340px;margin:0 auto}
+  .stats ul{grid-template-columns:1fr 1fr;gap:36px 0}
+  .stats li:nth-child(3){border-left:0;padding-left:0}
+  .item{grid-template-columns:180px 1fr}
+  .buy{grid-column:1/-1;justify-content:space-between}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .toggle{display:block}
+  .links{position:fixed;top:75px;left:0;right:0;background:var(--carbon);flex-direction:column;padding:28px 0;gap:22px;transform:translateY(-130%);transition:transform .3s}
+  .links.open{transform:none}
+  section{padding:72px 0}
+  .hero{padding:120px 0 64px}
+  .item{grid-template-columns:1fr}
+  .buy{justify-content:space-between}
+  .row{grid-template-columns:1fr}
+  form{padding:26px}
+  .f-grid{grid-template-columns:1fr}
+}
+
+/* Proceso */
+.proceso{background:#fff}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:44px 36px}
+.steps li{border-top:3px solid var(--carbon);padding-top:16px}
+.steps b{font:400 2.6rem/1 var(--display);color:var(--brasa)}
+.steps h3{font-size:1.5rem;margin:8px 0;text-transform:uppercase}
+.steps p{font-size:.98rem;color:#4A433E}
+/* Encuesta */
+.encuesta{background:var(--carbon);color:var(--hueso)}
+.encuesta .sec-head p{color:#CFC8BF}
+.groups{display:grid;grid-template-columns:1fr 1fr;gap:48px 72px}
+.groups h3{font-size:1.5rem;margin-bottom:16px;text-transform:uppercase}
+.r{display:grid;grid-template-columns:150px 1fr 56px;gap:14px;align-items:center;margin-bottom:12px;font-size:.95rem;color:#CFC8BF}
+.r .b{height:10px;background:#3A332F;border-radius:99px;overflow:hidden}
+.r .b i{display:block;height:100%;background:var(--oro);border-radius:99px}
+.r strong{text-align:right;color:var(--hueso)}
+.nota{margin-top:48px;font-size:1.15rem;max-width:36em;color:var(--hueso)}
+/* Nosotros + calidad */
+.mv{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.mv div{border-top:3px solid var(--brasa);padding-top:14px}
+.mv h3{font-size:1.5rem;text-transform:uppercase;margin-bottom:8px}
+.mv p{margin:0;font-size:.98rem}
+.calidad{background:var(--hueso)}
+.calidad .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px}
+.calidad h2{font-size:clamp(2.4rem,5vw,3.8rem);text-transform:uppercase;margin-bottom:20px}
+.calidad p{margin-bottom:18px;color:#3B3530;max-width:34em}
+.higiene{list-style:none;border-top:2px solid var(--carbon);align-self:start}
+.higiene li{padding:18px 0;border-bottom:1px solid var(--linea)}
+.higiene strong{display:block;font-weight:700}
+@media (max-width:960px){.steps{grid-template-columns:1fr 1fr}.groups,.calidad .wrap{grid-template-columns:1fr;gap:40px}}
+@media (max-width:720px){.steps,.mv{grid-template-columns:1fr}.r{grid-template-columns:1fr 56px}.r .b{grid-column:1/-1;order:3}.links{gap:22px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#inicio" class="logo" aria-label="La Parrillita, inicio">
+      <img src="logo.png" alt="" width="48" height="48"><span>La Parrillita</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#encuesta">Encuesta</a></li>
+      <li><a href="#sobre">Nosotros</a></li>
+      <li><a href="#pedidos" class="cta">Hacer pedido</a></li>
+    </ul>
+    <button class="toggle" id="toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <h1>El sabor de la tradición <em>en cada bocado</em></h1>
+      <p>Chorizos artesanales elaborados con recetas familiares y los mejores ingredientes, seleccionados por nuestra investigación de mercado.</p>
+      <div class="btns">
+        <a href="#productos" class="btn btn-oro">Ver nuestros chorizos</a>
+        <a href="#pedidos" class="btn btn-linea">Hacer pedido</a>
+      </div>
+    </div>
+    <div class="disc"><img src="logo.png" alt="La Parrillita, chorizo con sabor tradicional"></div>
+  </div>
+</header>
+
+<section class="stats" aria-label="Resultados de nuestra investigación">
+  <div class="wrap">
+    <ul>
+      <li><b>94%</b><span>Intención de compra positiva</span></li>
+      <li><b>84.8%</b><span>Aceptación del logo La Parrillita</span></li>
+      <li><b>60.6%</b><span>Dispuestos a pagar $15.000-$20.000</span></li>
+      <li><b>36.4%</b><span>Prefieren chorizo con verduras</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="productos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Nuestros chorizos</h2>
+      <p>Elaborados con las recetas más populares según nuestra investigación.</p>
+    </div>
+    <ul class="menu">
+      <li class="item">
+        <img src="mixto.jpg" alt="Chorizo mixto a la parrilla con arepas" loading="lazy">
+        <div><h3>Chorizo Mixto</h3><p>La opción más solicitada (27.3% de preferencia) que combina lo mejor de carne de cerdo y res, con todos los condimentos tradicionales.</p><div class="pref"><small>27.3% de preferencia</small><div class="bar"><i style="width:27.3%"></i></div></div></div>
+        <div class="buy"><span class="price">$18.000</span><button class="pedir" data-p="mixto">Pedir</button></div>
+      </li>
+      <li class="item">
+        <img src="cerdo.jpg" alt="Chorizo de cerdo a la parrilla con arepas" loading="lazy">
+        <div><h3>Chorizo de Cerdo</h3><p>Clásico y tradicional (18.2% de preferencia), perfecto para asados y parrilladas.</p><div class="pref"><small>18.2% de preferencia</small><div class="bar"><i style="width:18.2%"></i></div></div></div>
+        <div class="buy"><span class="price">$15.000</span><button class="pedir" data-p="cerdo">Pedir</button></div>
+      </li>
+      <li class="item">
+        <img src="res.jpg" alt="Chorizo de res a la parrilla con arepas" loading="lazy">
+        <div><h3>Chorizo de Res</h3><p>Sabor intenso y robusto (15.2% de preferencia), ideal para los amantes de la carne roja.</p><div class="pref"><small>15.2% de preferencia</small><div class="bar"><i style="width:15.2%"></i></div></div></div>
+        <div class="buy"><span class="price">$17.000</span><button class="pedir" data-p="res">Pedir</button></div>
+      </li>
+      <li class="item top">
+        <img src="verduras.jpg" alt="Chorizo con verduras a la parrilla con arepas" loading="lazy">
+        <div><h3>Chorizo con Verduras</h3><p>Nuestra especialidad (36.4% prefiere verduras), incluye cebolla y cilantro fresco, el ingrediente indispensable según nuestra investigación.</p><div class="pref"><small>36.4% de preferencia</small><div class="bar"><i style="width:36.4%"></i></div></div></div>
+        <div class="buy"><span class="price">$20.000</span><button class="pedir" data-p="verduras">Pedir</button></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="proceso" id="proceso">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Cómo lo hacemos</h2>
+      <p>Inspirado en el chorizo de Santa Rosa de Cabal, con un toque propio: tripa de conejo.</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><h3>Selección de la carne</h3><p>Revisamos la carne de cerdo, por su buen balance de grasa y carne, y el tocino. Retiramos tejidos no deseados, exceso de grasa e impurezas.</p></li>
+      <li><b>2</b><h3>Corte y molido</h3><p>Una parte de la carne se corta en cubos pequeños para dar textura y otra se muele para formar la masa.</p></li>
+      <li><b>3</b><h3>Mezcla y condimentos</h3><p>Añadimos cebolla larga, ajo, sal, comino y pimienta, y masajeamos con fuerza para que la carne absorba el sabor y quede compacta.</p></li>
+      <li><b>4</b><h3>Embutido</h3><p>Llenamos la tripa de conejo, lavada y desinfectada, con una embutidora y la dividimos en segmentos de 10 a 12 cm.</p></li>
+      <li><b>5</b><h3>Cocción y oreo</h3><p>Cocinamos en agua caliente con especias hasta que el centro llegue a 75 °C. Después los colgamos 30 minutos en un lugar ventilado y los dejamos secar.</p></li>
+      <li><b>6</b><h3>Empaque y frío</h3><p>Empacamos de forma hermética y conservamos entre 0 y 4 °C, lejos de la humedad, para evitar bacterias.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="encuesta" id="encuesta">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Resultados de nuestra investigación de mercado.</p>
+    </div>
+    <div class="groups">
+      <div><h3>¿Comprarían nuestro chorizo?</h3><div class="r"><span>Muy probable</span><span class="b"><i style="width:66.7%"></i></span><strong>66.7%</strong></div><div class="r"><span>Probable</span><span class="b"><i style="width:27.3%"></i></span><strong>27.3%</strong></div></div>
+      <div><h3>Presentación</h3><div class="r"><span>Empaque al vacío</span><span class="b"><i style="width:78.8%"></i></span><strong>78.8%</strong></div><div class="r"><span>Porción mediana</span><span class="b"><i style="width:63.6%"></i></span><strong>63.6%</strong></div><div class="r"><span>Porción grande</span><span class="b"><i style="width:33.3%"></i></span><strong>33.3%</strong></div></div>
+      <div><h3>Verduras</h3><div class="r"><span>Todas</span><span class="b"><i style="width:36.4%"></i></span><strong>36.4%</strong></div><div class="r"><span>Cebolla</span><span class="b"><i style="width:24.2%"></i></span><strong>24.2%</strong></div><div class="r"><span>Cilantro</span><span class="b"><i style="width:12.1%"></i></span><strong>12.1%</strong></div></div>
+      <div><h3>Condimentos</h3><div class="r"><span>Todos</span><span class="b"><i style="width:51.5%"></i></span><strong>51.5%</strong></div><div class="r"><span>Ajo</span><span class="b"><i style="width:12.1%"></i></span><strong>12.1%</strong></div><div class="r"><span>Orégano</span><span class="b"><i style="width:12.1%"></i></span><strong>12.1%</strong></div></div>
+    </div>
+    <p class="nota">La cebolla es el ingrediente indispensable y la porción mediana, el tamaño estándar.</p>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap">
+    <h2>Sobre La Parrillita</h2>
+    <div>
+      <p>Somos un emprendimiento familiar dedicado a la elaboración artesanal de chorizos con recetas pasadas de generación en generación. Nuestra investigación de mercado nos permitió entender qué es lo que los clientes realmente buscan: sabor auténtico, presentación atractiva y una buena relación precio-calidad.</p>
+      <p>Cada chorizo se elabora con dedicación, utilizando los condimentos más valorados por nuestros clientes: ajo y orégano (51.5% prefiere todos los condimentos), y la cebolla como ingrediente estrella (36.4%).</p>
+      <p>Trabajamos con presentación al vacío garantizando frescura y calidad, y nuestro precio ideal de $15.000-$20.000 por paquete ha sido validado por el 60.6% de los consumidores.</p>
+      <div class="mv">
+        <div><h3>Misión</h3><p>Elaborar chorizos artesanales utilizando ingredientes frescos que garanticen la satisfacción de los consumidores.</p></div>
+        <div><h3>Visión</h3><p>Seguir creciendo hasta llegar al punto más alto: que nuestros clientes sientan que los chorizos son de buena calidad y que nos destaquemos por sabor, precio y presentación.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="calidad">
+  <div class="wrap">
+    <div>
+      <h2>Hecho en San Pedro de los Milagros</h2>
+      <p>Aprovechamos los recursos frescos de nuestro pueblo y apoyamos a los productores locales. Es un proyecto de aprendices de la Institución Educativa Pio XII y el SENA (Técnica en agroindustria alimentaria), que aplica las Buenas Prácticas de Manufactura (B.P.M.).</p>
+      <p>Nuestros clientes reciben un producto artesanal de buena calidad, y la microempresa genera ingresos, crece en el mercado y crea oportunidades de empleo y emprendimiento.</p>
+    </div>
+    <ul class="higiene">
+      <li><strong>Uniforme completo</strong>Antifluidos blanco, guantes, gorro, tapabocas y zapatos cerrados blancos.</li>
+      <li><strong>Tripa de conejo</strong>Lavada y desinfectada antes de embutir.</li>
+      <li><strong>Cocción segura</strong>El centro del chorizo llega a 75 °C.</li>
+      <li><strong>Cadena de frío</strong>Conservación entre 0 y 4 °C en recipientes herméticos.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="pedido" id="pedidos">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Hacer pedido</h2>
+      <p>Fácil y rápido. Recibe tus chorizos en la puerta de tu casa.</p>
+    </div>
+    <form id="form" action="#" method="POST">
+      <div class="fg"><label for="nombre">Nombre completo</label><input type="text" id="nombre" placeholder="Tu nombre completo" required></div>
+      <div class="fg"><label for="telefono">Teléfono</label><input type="tel" id="telefono" placeholder="+57 300 000 0000" required></div>
+      <div class="fg"><label for="producto">Producto</label>
+        <select id="producto" required>
+          <option value="">Seleccione un producto</option>
+          <option value="mixto" data-n="Chorizo Mixto" data-v="18000">Chorizo Mixto - $18.000</option>
+          <option value="cerdo" data-n="Chorizo de Cerdo" data-v="15000">Chorizo de Cerdo - $15.000</option>
+          <option value="res" data-n="Chorizo de Res" data-v="17000">Chorizo de Res - $17.000</option>
+          <option value="verduras" data-n="Chorizo con Verduras" data-v="20000">Chorizo con Verduras - $20.000</option>
+        </select></div>
+      <div class="row">
+        <div class="fg"><label for="cantidad">Cantidad (paquetes)</label><input type="number" id="cantidad" min="1" value="1" required></div>
+        <div class="fg"><label for="zona">Zona de entrega</label>
+          <select id="zona" required>
+            <option value="">Seleccionar zona</option>
+            <option value="Norte">Norte</option><option value="Sur">Sur</option>
+            <option value="Oriente">Oriente</option><option value="Poniente">Poniente</option>
+          </select></div>
+      </div>
+      <div class="total"><span>Total</span><b id="total">$0</b></div>
+      <button type="submit" class="btn btn-oro">Enviar pedido</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="logo"><img src="logo.png" alt="" width="48" height="48"><span>La Parrillita</span></div>
+        <p class="f-desc">Chorizos artesanales con recetas familiares y los mejores ingredientes. Tradición y sabor en cada bocado.</p>
+      </div>
+      <div><h4>Productos</h4><ul><li><a href="#productos">Nuestros chorizos</a></li><li><a href="#proceso">Cómo lo hacemos</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="#sobre">Nosotros</a></li><li><a href="#encuesta">Encuesta</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="#pedidos">Hacer pedido</a></li><li>WhatsApp: +54 9 11 1234-5678</li></ul></div>
+    </div>
+    <p class="copy">© 2026 La Parrillita. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Número de WhatsApp para recibir pedidos (solo dígitos, con código de país)
+  const WHATSAPP = '5491112345678';
+
+  const links = document.getElementById('links'), toggle = document.getElementById('toggle');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', e => { if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded', false); } });
+
+  const prod = document.getElementById('producto'), cant = document.getElementById('cantidad'), total = document.getElementById('total');
+  const money = n => '$' + n.toLocaleString('es-CO');
+  function calc() {
+    const o = prod.selectedOptions[0];
+    total.textContent = money((+o.dataset.v || 0) * (Math.max(1, +cant.value) || 1));
+  }
+  prod.addEventListener('change', calc);
+  cant.addEventListener('input', calc);
+
+  // Botones "Pedir" preseleccionan el producto
+  document.querySelectorAll('.pedir').forEach(b => b.addEventListener('click', () => {
+    prod.value = b.dataset.p; calc();
+    document.getElementById('pedidos').scrollIntoView();
+    document.getElementById('nombre').focus({ preventScroll: true });
+  }));
+
+  // Enviar pedido por WhatsApp
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const o = prod.selectedOptions[0];
+    const msg = `Hola, quiero hacer un pedido en La Parrillita:\n` +
+      `Nombre: ${nombre.value}\nTeléfono: ${telefono.value}\n` +
+      `Producto: ${o.dataset.n} x ${cant.value}\nZona: ${zona.value}\nTotal: ${total.textContent}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>
+</body>
+</html>
